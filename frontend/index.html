@@ -1,87 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Manutenção Industrial - Torno CNC</title>
 
-    <title>Manutenção Industrial - WebAR</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+    <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
+    <!-- MindAR -->
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header id="hud">
+    <div id="mensagem">
+        Aponte a câmera para o target do Torno CNC
+    </div>
 
-        <div class="hud-text">
-
-            <strong>TORNO CNC • MANUTENÇÃO INDUSTRIAL</strong>
-
-            <span id="status">
-                Inicializando a câmera...
-            </span>
-
-        </div>
-
-        <span id="badge">
-            INICIANDO
-        </span>
-
-    </header>
-
+    <div id="painel" class="oculto">
+        <h2 id="titulo">Torno CNC</h2>
+        <p id="conteudo"></p>
+        <button id="fechar">Fechar</button>
+    </div>
 
     <a-scene
         id="ar-scene"
-
         mindar-image="
-            imageTargetSrc: assets/targets/torno.mind;
-            autoStart: true;
-            uiLoading: yes;
-            uiScanning: yes;
-            uiError: yes;
+            imageTargetSrc: assets/targets/torno-cnc.mind;
+            maxTrack: 1;
         "
-
         color-space="sRGB"
-
-        renderer="
-            colorManagement: true;
-            physicallyCorrectLights: true;
-            alpha: true;
-        "
-
+        renderer="colorManagement: true, physicallyCorrectLights"
         vr-mode-ui="enabled: false"
-
-        device-orientation-permission-ui="enabled: false"
-
-        embedded>
-
+        device-orientation-permission-ui="enabled: false">
 
         <a-camera
-            id="ar-camera"
             position="0 0 0"
             look-controls="enabled: false">
         </a-camera>
 
+        <a-entity mindar-image-target="targetIndex: 0">
 
-        <a-entity
-            id="target"
-            mindar-image-target="targetIndex: 0">
+            <!-- Hotspot 1 - Identificação -->
+            <a-circle
+                class="hotspot"
+                data-tipo="identificacao"
+                position="-0.45 0.35 0"
+                radius="0.08"
+                color="#2196F3">
+            </a-circle>
+
+            <!-- Hotspot 2 - Componentes -->
+            <a-circle
+                class="hotspot"
+                data-tipo="componentes"
+                position="0.45 0.35 0"
+                radius="0.08"
+                color="#4CAF50">
+            </a-circle>
+
+            <!-- Hotspot 3 - Manutenção -->
+            <a-circle
+                class="hotspot"
+                data-tipo="manutencao"
+                position="-0.45 -0.35 0"
+                radius="0.08"
+                color="#FF9800">
+            </a-circle>
+
+            <!-- Hotspot 4 - Monitoramento -->
+            <a-circle
+                class="hotspot"
+                data-tipo="monitoramento"
+                position="0.45 -0.35 0"
+                radius="0.08"
+                color="#F44336">
+            </a-circle>
 
         </a-entity>
 
-
     </a-scene>
-
 
     <script src="js/app.js"></script>
 
 </body>
-
 </html>
