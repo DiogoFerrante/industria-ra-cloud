@@ -53,3 +53,20 @@ main {
 .card p:last-child {
     border-bottom: none;
 }
+
+a-scene {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.card {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+}
