@@ -1,0 +1,26 @@
+services:
+
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: mqtt-industria
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  backend:
+    build: ./backend
+    container_name: backend-industria
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mqtt
+
+  simulator:
+    build: ./simulator
+    container_name: simulator-industria
+    environment:
+      MQTT_BROKER: mqtt
+    depends_on:
+      - mqtt
+      - backend
