@@ -60,6 +60,7 @@ a-scene {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 .card {
@@ -67,7 +68,7 @@ a-scene {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 9999;
 
     width: 90%;
     max-width: 400px;
