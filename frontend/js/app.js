@@ -56,12 +56,24 @@ function mostrarErro() {
 document.querySelectorAll('.hotspot').forEach((hotspot) => {
   const acao = () => {
     switch (hotspot.dataset.ponto) {
-      case 'identificacao': mostrarIdentificacao(); break;
-      case 'componentes': mostrarComponentes(); break;
-      case 'manutencao': mostrarManutencao(); break;
-      case 'monitoramento': mostrarMonitoramento(); break;
+      case 'identificacao':
+        mostrarIdentificacao();
+        break;
+      case 'componentes':
+        mostrarComponentes();
+        break;
+      case 'manutencao':
+        mostrarManutencao();
+        break;
+      case 'monitoramento':
+        mostrarMonitoramento();
+        break;
     }
   };
+
+  hotspot.classList.add('clickable');
+  hotspot.setAttribute('class', 'hotspot clickable');
+  hotspot.addEventListener('click', acao);
   hotspot.addEventListener('pointerup', acao);
 });
 
