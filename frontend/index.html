@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b46">
+  <title>Indústria RA Cloud | Torno CNC</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <div><p class="sobretitulo">SISTEMA DE APOIO À MANUTENÇÃO</p><h1>Indústria RA Cloud</h1></div>
+    <span class="etiqueta">PROTÓTIPO DIDÁTICO</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Torno CNC — CNC-01</h2>
+      <p>Aponte a câmera para a imagem de identificação cadastrada. Toque nos pontos para consultar as informações.</p>
+    </section>
+
+    <section id="area-ra" class="area-ra">
+      <div id="carregando" class="aviso-camera">Preparando a câmera… permita o acesso quando solicitado.</div>
+      <a-scene
+        mindar-image="imageTargetSrc: assets/targets/torno.mind; autoStart: true; uiLoading: no; uiScanning: yes; uiError: no;"
+        embedded
+        color-space="sRGB"
+        renderer="colorManagement: true, physicallyCorrectLights"
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false">
+        <a-assets>
+          <img id="imagem-torno" src="assets/images/torno.png.png">
+        </a-assets>
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-entity mindar-image-target="targetIndex: 0" id="target-torno">
+          <a-plane class="hotspot" data-ponto="identificacao" position="-0.38 0.25 0" width="0.42" height="0.20" color="#155e75" material="opacity: 0.92" text="value: 1. IDENTIFICAÇÃO; align: center; color: white; width: 1.5" ></a-plane>
+          <a-plane class="hotspot" data-ponto="componentes" position="0.38 0.25 0" width="0.42" height="0.20" color="#155e75" material="opacity: 0.92" text="value: 2. COMPONENTES; align: center; color: white; width: 1.5"></a-plane>
+          <a-plane class="hotspot" data-ponto="manutencao" position="-0.38 -0.25 0" width="0.42" height="0.20" color="#155e75" material="opacity: 0.92" text="value: 3. MANUTENÇÃO; align: center; color: white; width: 1.5"></a-plane>
+          <a-plane class="hotspot" data-ponto="monitoramento" position="0.38 -0.25 0" width="0.42" height="0.20" color="#b45309" material="opacity: 0.95" text="value: 4. MONITORAMENTO; align: center; color: white; width: 1.4"></a-plane>
+        </a-entity>
+      </a-scene>
+    </section>
+
+    <section id="painel" class="painel" aria-live="polite">
+      <div class="painel-cabecalho"><h2 id="titulo-painel">Como utilizar</h2><button id="fechar-painel" class="botao-secundario" type="button">Fechar</button></div>
+      <div id="conteudo-painel"><p>Quando o target for reconhecido, os quatro pontos ficarão ancorados à imagem. Toque em um ponto para abrir as informações.</p></div>
+    </section>
+
+    <p class="nota">Aviso: temperatura, vibração e status são dados fictícios para fins acadêmicos. Não representam limites oficiais de operação ou segurança.</p>
+  </main>
+  <footer>Projeto acadêmico • Realidade Aumentada + Computação em Nuvem</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
